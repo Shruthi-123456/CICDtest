@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="2b1acb2e-3438-4adc-a53c-b8026c1e7273" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="pipelinetestFlow" doc:id="54758e74-da9a-42f9-bde4-e791c1f25afc" >
+		<http:listener doc:name="Listener" doc:id="a3d3e942-6cd8-4c1c-949f-9c2a1311a132" config-ref="HTTP_Listener_config" path="/pipeline"/>
+		<choice doc:name="Choice" doc:id="aef92249-5061-4d5f-9032-3e62bbfb6601" >
+			<when expression='#[attributes.queryParams.operation == "mul"]'>
+				<ee:transform doc:name="Transform Message" doc:id="e400be3a-82af-475b-a8d7-f5f7a30b773f">
+			<ee:message>
+				<ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"message" : "multiplication of " ++ payload.a ++ " and " ++ payload.b ++ "is " ++ (payload.a * payload.b)
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+			</when>
+			<when expression='#[attributes.queryParams.operation == "add"]'>
+				<ee:transform doc:name="Transform Message" doc:id="ca3d7661-b421-43f2-aef9-e0b810926571" >
+					<ee:message >
+						<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"message" : "addition of " ++ payload.a ++ " and " ++ payload.b ++ "is " ++ (payload.a + payload.b)
+}]]></ee:set-payload>
+					</ee:message>
+				</ee:transform>
+			</when>
+			<when expression='#[attributes.queryParams.operation == "div"]'>
+				<ee:transform doc:name="Transform Message" doc:id="34d7e94a-0482-4bbb-ad03-a42acd3a6378" >
+					<ee:message >
+						<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"message" : "division of " ++ payload.a ++ " and " ++ payload.b ++ "is " ++ (payload.a / payload.b)
+}]]></ee:set-payload>
+					</ee:message>
+				</ee:transform>
+			</when>
+			<otherwise >
+				<ee:transform doc:name="Transform Message" doc:id="3362c1e3-7cba-464a-bddc-b90a19a00ac1" >
+					<ee:message >
+						<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"message" : "invalid"
+}]]></ee:set-payload>
+					</ee:message>
+				</ee:transform>
+			</otherwise>
+		</choice>
+		<logger level="INFO" doc:name="Logger" doc:id="7511273d-0fb2-4041-8581-656f462c5842" message="#[payload]"/>
+		<logger level="INFO" doc:name="Logger" doc:id="35db9dd0-df2d-46d3-a31e-b0b050e33638" message="end logger"/>
+	</flow>
+</mule>
