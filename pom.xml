@@ -137,13 +137,14 @@
     <repository>
         <id>github</id>
         <name>GitHub MyProject Maven Packages</name>
-        <url>https://maven.pkg.github.com/Shruthi-123456/CICDtest</url>
+        <url>https://maven.pkg.github.com/Shruthi-123456/CICDtest/CICDtest</url>
     </repository>
 </distributionManagement>
-	<properties>
+<properties>
     <github.username>shruthi.enugu@inheritcloud.com</github.username>
     <github.token>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</github.token>
 </properties>
+
 
 
 	<pluginRepositories>
