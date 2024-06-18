@@ -134,6 +134,13 @@
 		</repository>
 	</repositories>
 
+<distributionManagement>
+    <repository>
+        <id>github</id>
+        <name>GitHub Packages</name>
+        <url>https://maven.pkg.github.com/Shruthi-123456/CICDtest</url>
+    </repository>
+</distributionManagement>
 
 	<pluginRepositories>
 		<pluginRepository>
