@@ -140,6 +140,11 @@
         <url>https://maven.pkg.github.com/Shruthi-123456/CICDtest</url>
     </repository>
 </distributionManagement>
+	<properties>
+    <github.username>shruthi.enugu@inheritcloud.com</github.username>
+    <github.token>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</github.token>
+</properties>
+
 
 	<pluginRepositories>
 		<pluginRepository>
