@@ -6,6 +6,19 @@
 	<artifactId>CICDtest</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>mule-application</packaging>
+	<distributionManagement>
+    <repository>
+        <id>github</id>
+        <name>GitHub MyProject Maven Packages</name>
+        <url>https://maven.pkg.github.com/Shruthi-123456/CICDtest/CICDtest</url>
+    </repository>
+</distributionManagement>
+<properties>
+    <github.username>shruthi.enugu@inheritcloud.com</github.username>
+    <github.token>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</github.token>
+</properties>
+
+
 
 	<name>CICDtest</name>
 
@@ -133,18 +146,6 @@
 			<layout>default</layout>
 		</repository>
 	</repositories>
-<distributionManagement>
-    <repository>
-        <id>github</id>
-        <name>GitHub MyProject Maven Packages</name>
-        <url>https://maven.pkg.github.com/Shruthi-123456/CICDtest/CICDtest</url>
-    </repository>
-</distributionManagement>
-<properties>
-    <github.username>shruthi.enugu@inheritcloud.com</github.username>
-    <github.token>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</github.token>
-</properties>
-
 
 
 	<pluginRepositories>
