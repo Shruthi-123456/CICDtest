@@ -6,9 +6,6 @@
 	<artifactId>CICDtest</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>mule-application</packaging>
-	<distributionManagement>
-
-
 
 	<name>CICDtest</name>
 
